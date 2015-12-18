@@ -1,0 +1,30 @@
+nginx:
+    build: ./nginx
+    links:
+        - adjuvant1:adjuvant1
+        - adjuvant2:adjuvant2
+        - adjuvant3:adjuvant3
+    ports:
+        - "80:80"
+adjuvant1:
+    image: "dixithk/docker-adjuvant"
+    links:
+        - mongo:MONGODB
+    ports:
+        - "8083"
+adjuvant2:
+    image: "dixithk/docker-adjuvant"
+    links:
+        - mongo:MONGODB
+    ports:
+        - "8083"
+adjuvant3:
+    image: "dixithk/docker-adjuvant"
+    links:
+        - mongo:MONGODB
+    ports:
+        - "8083"
+mongo:
+    image: mongo
+    ports:
+        - "27017"
